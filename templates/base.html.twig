@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ asset('style.css') }}">
+    <title>{% block title %}Test task for Ardas{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+{% block header %}
+    <header>
+        <div>
+            Test task
+        </div>
+    </header>
+{% endblock %}
+
+<div class="body-container">
+    {% block body %}
+
+    {% endblock %}
+</div>
+
+{% block footer %}
+    <footer>
+        <div class="footer-copyright">
+            <p>{{ 'now'|date('Y') }} - Special for <a href="https://ardas-it.com/" title="Ardas" target="_blank">Ardas</a></p>
+        </div>
+        <div class="footer-author">
+            <p><a href="https://www.linkedin.com/in/zhukovsky-evgeny/" target="_blank" title="Author">Evgeny Zhukovsky</a></p>
+        </div>
+        <div class="clr"></div>
+    </footer>
+{% endblock %}
+
+{% block javascripts %}
+
+{% endblock %}
+</body>
+</html>

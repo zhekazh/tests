@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product List{% endblock %}
+
+{% block body %}
+    <h1>Product List</h1>
+
+    <div class="product-new-btn">
+        <a href="{{ path('product_new') }}">Create new</a>
+    </div>
+
+    <div class="search">
+        <label for="search-input">Search:</label>
+        <input type="text" name="search-input" id="search-input" onkeyup="search()">
+    </div>
+
+    <div id="search-container">
+        {% include 'product/search.html.twig' with {'products':products} %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        function search() {
+            let search_query = document.getElementById("search-input").value;
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("search-container").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "{{ path('product_search') }}?q="+search_query, true);
+            xhttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+            xhttp.send();
+        }
+    </script>
+{% endblock %}
+

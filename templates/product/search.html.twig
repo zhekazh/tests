@@ -1,0 +1,29 @@
+{% if products|length > 0 %}
+    <table class="table">
+    <thead>
+    <tr>
+        <th class="td-name">Name</th>
+        <th>Price</th>
+        <th>Created At</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for product in products %}
+        <tr class="{{ cycle(['odd', ''], loop.index0) }}">
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.createdAt ? product.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            <td>
+                <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+{% else %}
+    <div>No results found</div>
+{% endif %}
+
+
+
